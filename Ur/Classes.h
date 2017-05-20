@@ -51,7 +51,7 @@ public:
 	void update_print(int);
 	friend class Player;
 	friend class Board;
-	friend std::ostream operator << (std::ostream & os, Piece & other);
+	// friend class std::ostream;// operator << (std::ostream & os, Piece & other);
 
 };
 
@@ -67,6 +67,8 @@ public:
 	friend class Board;
 	Player();
 	void reset(char);
+	void display();
+	// friend std::ostream operator << (std::ostream & os, Player & other);
 };
 
 //===========================
@@ -80,16 +82,19 @@ private:
 	string full_board[3][8];
 	char color[5][8];
 	char symbol[5][8];
-	Player red, blue;
+	Player red, blue, *current, *other;
+	int roll;
 public:
 	Board();
 	void reset();
 	void display(bool);
 	void update_board();
-	void check_moves();
+	bool check_moves();
 	void execute(bool);
 	bool winner();
 	void test_map();
+	void run_move();
+	void update_score();
 };
 
 
@@ -98,6 +103,7 @@ public:
 // Functions
 //===========================
 
-int roll();
+int roll_dice();
+bool y_or_n();
 
 #endif
